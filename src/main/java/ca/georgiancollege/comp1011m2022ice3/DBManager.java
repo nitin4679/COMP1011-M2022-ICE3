@@ -19,4 +19,18 @@ public class DBManager
         return m_instance;
     }
     /********************************************************************* */
+
+
+
+    // private instance member variables
+    private String m_user = "student";
+    private String m_password = "123456";
+    private String m_connectURL = "jdbc:mysql://localhost:3306/comp1011m2022";
+
+    public int insertVector2D(Vector2D vector2D)
+    {
+        int vectorID = -1;
+
+        return vectorID;
+    }
 }
