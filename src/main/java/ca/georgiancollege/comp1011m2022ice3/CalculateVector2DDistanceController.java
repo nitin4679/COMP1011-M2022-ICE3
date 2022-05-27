@@ -37,7 +37,7 @@ public class CalculateVector2DDistanceController {
             Vector2D point1 = new Vector2D(x1, y1);
             Vector2D point2 = new Vector2D(x2, y2);
 
-            float distance = Utility.Distance(point1,point2);
+            float distance = Utility.Instance().Distance(point1,point2);
             ResultTextField.setText(String.valueOf(distance));
         }
         catch (Exception e){

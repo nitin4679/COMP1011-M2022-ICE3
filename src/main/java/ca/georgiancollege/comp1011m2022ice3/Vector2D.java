@@ -1,4 +1,4 @@
-package ca.georgiancollege.comp1011m2022ice3;
+package ca.georgiancollege.comp1011m2022ice3   ;
 
 /**
  * @author Nitin Nitin
