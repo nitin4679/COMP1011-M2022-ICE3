@@ -1,5 +1,9 @@
 package ca.georgiancollege.comp1011m2022ice3;
 
+import javafx.scene.control.Spinner;
+import javafx.scene.control.SpinnerValueFactory;
+import javafx.scene.control.TextField;
+
 /*Singleton*/
 public final class Utility
 {
@@ -43,5 +47,37 @@ public final class Utility
         float diffYs = y2 - y1;
         return (float) Math.sqrt(diffXs * diffXs + diffYs * diffYs);
 
+    }
+
+    /**
+     * This is a helper method that configures a spinners of type Double for a Vector2D component (e.g. x or y)
+     * @param spinner
+     * @param min
+     * @param max
+     * @param default_value
+     * @param increment_value
+     */
+    public void ConfigureVector2DSpinner(Spinner<Double> spinner, double min, double max, double default_value, double increment_value)
+    {
+        // configure each spinner
+        //step1- define a SpinnerValueFactory
+        SpinnerValueFactory<Double> spinnerValueFactory = new SpinnerValueFactory.DoubleSpinnerValueFactory(min, max, default_value, increment_value);
+        // step2 - set the Value factory
+        spinner.setValueFactory(spinnerValueFactory);
+        //step3 - get access to the spinner's textFields
+        TextField spinnerTextField = spinner.getEditor();
+
+        //step4 - create an event listener / event handler -> Observer Pattern
+
+        spinnerTextField.textProperty().addListener((observable, oldValue, newValue) ->
+        {
+            try {
+                Float.parseFloat(newValue);
+            }
+            catch (Exception e)
+            {
+                spinnerTextField.setText(oldValue);
+            }
+        });
     }
 }
