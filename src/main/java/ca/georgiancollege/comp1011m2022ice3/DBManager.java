@@ -1,5 +1,9 @@
 package ca.georgiancollege.comp1011m2022ice3;
 
+import javafx.fxml.FXML;
+
+import java.sql.*;
+
 // singleton
 public class DBManager
 {    /********************** SINGLETON SECTION **************************/
@@ -27,9 +31,42 @@ public class DBManager
     private String m_password = "123456";
     private String m_connectURL = "jdbc:mysql://localhost:3306/comp1011m2022";
 
-    public int insertVector2D(Vector2D vector2D)
-    {
+    public int insertVector2D(Vector2D vector2D) throws SQLException {
         int vectorID = -1;
+        //initializing the result set object
+        ResultSet resultSet = null;
+
+        //create  a query string
+        String sql = "Insert into vectors(X,Y) values(?,?);";
+
+        try
+        ( /*head of the try / catch block */
+            Connection connection = DriverManager.getConnection(m_connectURL, m_user, m_password);
+            PreparedStatement statement = connection.prepareStatement(sql, new String[] {"vectorID"});
+        )
+        {
+            // configure prepared  statement
+            statement.setFloat(1,vector2D.getX());
+            statement.setFloat(2, vector2D.getY());
+
+            //get the vectorID
+            resultSet = statement.getGeneratedKeys();
+            while (resultSet.next())
+            {
+                //get the VectorID from the database
+                vectorID = resultSet.getInt(1);
+            }
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        finally {
+            if (resultSet != null)
+            {
+                resultSet.close();
+            }
+        }
 
         return vectorID;
     }
