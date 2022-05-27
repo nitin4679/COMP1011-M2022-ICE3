@@ -43,7 +43,12 @@ public class CalculateVector2DDistanceController implements Initializable {
             float y2 = Y2Spinner.getValue().floatValue();
 
             Vector2D point1 = new Vector2D(x1, y1);
+            int insertPoint1 =  DBManager.Instance().insertVector2D(point1);
+
+            System.out.println(insertPoint1);
             Vector2D point2 = new Vector2D(x2, y2);
+            int insertPoint2 =  DBManager.Instance().insertVector2D(point2);
+            System.out.println(insertPoint2);
 
             System.out.println("Point 1:"+ point1);
             System.out.println("Point 2:"+ point2);

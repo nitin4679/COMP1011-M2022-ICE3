@@ -27,8 +27,8 @@ public class DBManager
 
 
     // private instance member variables
-    private String m_user = "student";
-    private String m_password = "123456";
+    private String m_user = "root";
+    private String m_password = "nitiN@1527";
     private String m_connectURL = "jdbc:mysql://localhost:3306/comp1011m2022";
 
     public int insertVector2D(Vector2D vector2D) throws SQLException {
@@ -43,11 +43,17 @@ public class DBManager
         ( /*head of the try / catch block */
             Connection connection = DriverManager.getConnection(m_connectURL, m_user, m_password);
             PreparedStatement statement = connection.prepareStatement(sql, new String[] {"vectorID"});
+
         )
         {
+
             // configure prepared  statement
             statement.setFloat(1,vector2D.getX());
             statement.setFloat(2, vector2D.getY());
+
+            //run the command on the Database
+
+            statement.executeUpdate();
 
             //get the vectorID
             resultSet = statement.getGeneratedKeys();
