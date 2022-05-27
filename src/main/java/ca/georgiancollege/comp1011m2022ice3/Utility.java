@@ -1,7 +1,7 @@
 package ca.georgiancollege.comp1011m2022ice3;
 
 /*Singleton*/
-public class Utility
+public final class Utility
 {
     // step1 - create a private static instance member
     private static Utility m_instance = null;
