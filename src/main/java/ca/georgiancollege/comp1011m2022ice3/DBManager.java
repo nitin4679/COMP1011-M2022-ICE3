@@ -27,12 +27,18 @@ public class DBManager
 
 
     // private instance member variables
-    private String m_user = "root";
-    private String m_password = "nitiN@1527";
+    private String m_user = "student";
+    private String m_password = "123456";
     private String m_connectURL = "jdbc:mysql://localhost:3306/comp1011m2022";
 
+    /**
+     * This method inserts a Vector2D object to the Database
+     * @param vector2D
+     * @return
+     * @throws SQLException
+     */
     public int insertVector2D(Vector2D vector2D) throws SQLException {
-        int vectorID = -1;
+        int vectorID = -1; // if this method returns -1 - it means that something went wrong
         //initializing the result set object
         ResultSet resultSet = null;
 
